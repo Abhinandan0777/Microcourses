@@ -1,0 +1,103 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-gray-50 text-gray-900;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply px-4 py-2 rounded-lg font-medium transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2;
+  }
+  
+  .btn-primary {
+    @apply btn bg-primary-600 text-white hover:bg-primary-700 focus:ring-primary-500;
+  }
+  
+  .btn-secondary {
+    @apply btn bg-gray-200 text-gray-900 hover:bg-gray-300 focus:ring-gray-500;
+  }
+  
+  .btn-danger {
+    @apply btn bg-red-600 text-white hover:bg-red-700 focus:ring-red-500;
+  }
+  
+  .input {
+    @apply w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent;
+  }
+  
+  .card {
+    @apply bg-white rounded-lg shadow-md p-6;
+  }
+  
+  .progress-bar {
+    @apply w-full bg-gray-200 rounded-full h-2;
+  }
+  
+  .progress-fill {
+    @apply bg-primary-600 h-2 rounded-full transition-all duration-300;
+  }
+}
+
+/* 
+✅ FIX ISSUE 3: Modal Scroll Styles */
+@layer components {
+  /* Prevent body scroll when modal is open */
+  body.modal-open {
+    overflow: hidden;
+    padding-right: 0px; /* Prevent layout shift */
+  }
+  
+  /* Modal overlay */
+  .modal-overlay {
+    @apply fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50;
+    overflow-y: auto; /* Allow overlay to scroll */
+  }
+  
+  /* Modal content container */
+  .modal-content {
+    @apply bg-white rounded-lg w-full shadow-xl;
+    max-height: 90vh; /* Limit height to viewport */
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; /* Prevent content overflow */
+  }
+  
+  /* Modal header - fixed at top */
+  .modal-header {
+    @apply flex-shrink-0 px-6 py-4 border-b border-gray-200;
+  }
+  
+  /* Modal body - scrollable */
+  .modal-body {
+    @apply flex-1 px-6 py-4;
+    overflow-y: auto; /* Enable vertical scrolling */
+    overflow-x: hidden;
+    max-height: calc(90vh - 140px); /* Account for header and footer */
+  }
+  
+  /* Modal footer - fixed at bottom */
+  .modal-footer {
+    @apply flex-shrink-0 px-6 py-4 border-t border-gray-200 bg-gray-50;
+  }
+  
+  /* Custom scrollbar for modal body */
+  .modal-body::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  .modal-body::-webkit-scrollbar-track {
+    @apply bg-gray-100 rounded;
+  }
+  
+  .modal-body::-webkit-scrollbar-thumb {
+    @apply bg-gray-400 rounded;
+  }
+  
+  .modal-body::-webkit-scrollbar-thumb:hover {
+    @apply bg-gray-500;
+  }
+}
